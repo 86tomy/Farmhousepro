@@ -23,10 +23,8 @@
 </head>
 <body class="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-100 min-h-screen p-3 md:p-6 transition-colors duration-200">
 
-    <!-- KONTAINER DIUBAH MENJADI max-w-full AGAR MEMANFAATKAN SELURUH LEBAR LAYAR -->
     <div class="max-w-full mx-auto space-y-6">
         
-        <!-- HEADER UTAMA -->
         <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 transition-colors duration-200 print-card">
             <div>
                 <div class="flex items-center gap-3 flex-wrap">
@@ -48,7 +46,6 @@
             </div>
         </div>
 
-        <!-- BACKUP & RESTORE -->
         <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 transition-colors duration-200 no-print">
             <div class="flex items-center gap-4">
                 <span class="text-3xl">💾</span>
@@ -68,10 +65,24 @@
             </div>
         </div>
 
-        <!-- GRID LAYOUT UTAMA: Diubah rasionya agar Tabel mendapatkan porsi ruang jauh lebih luas -->
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 transition-colors duration-200 no-print">
+            <div class="flex items-center gap-4">
+                <span class="text-3xl">🗑️</span>
+                <div>
+                    <h2 class="text-base font-bold text-gray-800 dark:text-gray-200">Pembersihan Data Bulanan</h2>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Hapus seluruh riwayat pencatatan pada bulan tertentu secara permanen tanpa memicu default otomatis.</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-3 flex-wrap">
+                <input type="month" id="hapusBulanInput" class="px-3 py-2 text-base border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 font-semibold">
+                <button id="btnHapusPerBulan" class="bg-red-600 hover:bg-red-700 text-white text-sm font-bold py-2.5 px-4 rounded-xl cursor-pointer transition shadow-sm">
+                    ⚠️ Hapus Data Bulan Ini
+                </button>
+            </div>
+        </div>
+
         <div class="grid grid-cols-1 xl:grid-cols-4 gap-6">
             
-            <!-- SIDEBAR FORM INPUT (1 KOLOM) -->
             <div class="space-y-6 no-print xl:col-span-1">
                 <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 h-fit transition-colors duration-200">
                     <div class="flex justify-between items-center mb-6 border-b dark:border-gray-700 pb-3">
@@ -133,7 +144,7 @@
                             <textarea id="keterangan" rows="2" placeholder="Catatan tambahan..." class="w-full px-4 py-2.5 text-base border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 font-medium"></textarea>
                         </div>
 
-                        <button type="submit" id="submitBtn" class="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-bold text-base py-3 px-4 rounded-xl transition duration-200 shadow-md cursor-pointer">
+                        <button type="submit" id="submitBtn" class="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-bold text-base py-3.5 px-4 rounded-xl transition duration-200 shadow-md cursor-pointer">
                             Tambahkan Data
                         </button>
                     </form>
@@ -149,10 +160,8 @@
                 </div>
             </div>
 
-            <!-- AREA MONITORING & RIWAYAT LAPORAN (3 KOLOM - JAUH LEBIH LEBAR) -->
             <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 xl:col-span-3 flex flex-col space-y-6 transition-colors duration-200 print-card overflow-hidden">
                 
-                <!-- FILTER DATA TABEL -->
                 <div class="bg-gray-50 dark:bg-gray-900/50 p-4 rounded-xl border border-gray-200 dark:border-gray-700 no-print">
                     <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mb-3 flex items-center gap-2">
                         <span>🔍</span> Filter Data Pencatatan
@@ -186,11 +195,9 @@
                     </div>
                 </div>
 
-                <!-- CONTAINER LIST RIWAYAT TABEL -->
                 <div class="w-full">
                     <h2 class="text-xl font-bold text-gray-800 dark:text-gray-200 mb-4 border-b dark:border-gray-700 pb-3">Riwayat Pencatatan Laporan (Per Pemain)</h2>
                     
-                    <!-- Pembungkus Utama Blok Kelompok Riwayat -->
                     <div id="verticalListContainer" class="space-y-6 w-full">
                         <div id="emptyRow" class="text-center py-12 text-gray-400 text-base italic bg-gray-50 dark:bg-gray-900/40 rounded-xl border border-dashed border-gray-200 dark:border-gray-700">
                             Membuka sambungan ke cloud server...
@@ -198,11 +205,9 @@
                     </div>
                 </div>
 
-                <!-- GRAND TOTAL CARDS -->
                 <div class="pt-6 border-t border-gray-200 dark:border-gray-700">
                     <h3 class="text-xs font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-3">💰 Grand Total Berdasarkan Filter</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                        <!-- Card Cegel -->
                         <div class="bg-gradient-to-br from-blue-50 to-blue-100/60 dark:from-blue-950/20 dark:to-blue-900/10 p-4 rounded-xl border border-blue-200/60 dark:border-blue-900/30 flex items-center justify-between shadow-sm">
                             <div>
                                 <p class="text-xs font-bold text-blue-600 dark:text-blue-400">Total Setoran Cegel</p>
@@ -210,15 +215,13 @@
                             </div>
                             <span class="text-2xl bg-blue-500/10 p-2 rounded-xl text-blue-600 no-print">🔷</span>
                         </div>
-                        <!-- Card Uang Makan -->
                         <div class="bg-gradient-to-br from-emerald-50 to-emerald-100/60 dark:from-emerald-950/20 dark:to-emerald-900/10 p-4 rounded-xl border border-emerald-200/60 dark:border-emerald-900/30 flex items-center justify-between shadow-sm">
                             <div>
                                 <p class="text-xs font-bold text-emerald-600 dark:text-emerald-400">Total Uang Makan</p>
-                                <p id="totalUangMakan" class="text-xl font-extrabold font-mono text-emerald-900 dark:text-emerald-100 mt-1">Rp 0</p>
+                                <p id="totalUangMakan" class="text-xl font-extrabold font-mono text-emerald-900 dark:text-blue-100 mt-1">Rp 0</p>
                             </div>
                             <span class="text-2xl bg-emerald-500/10 p-2 rounded-xl text-emerald-600 no-print">🍖</span>
                         </div>
-                        <!-- Card Guardian -->
                         <div class="bg-gradient-to-br from-purple-50 to-purple-100/60 dark:from-purple-950/20 dark:to-purple-900/10 p-4 rounded-xl border border-purple-200/60 dark:border-purple-900/30 flex items-center justify-between shadow-sm">
                             <div>
                                 <p class="text-xs font-bold text-purple-600 dark:text-purple-400">Total Guardian</p>
@@ -234,11 +237,11 @@
 
     </div>
 
-    <!-- CODE SYSTEM & FIREBASE INTEGRASI -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getDatabase, ref, set, onValue, remove, update } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
+        // Konfigurasi Aplikasi Firebase Anda
         const firebaseConfig = {
             apiKey: "AIzaSyAaYTmVx6phzoK8HNOSw9y3MAtkGe_pS5Y",
             authDomain: "perhitungan-basic-farmhouse.firebaseapp.com",
@@ -255,6 +258,7 @@
 
         let dataList = [];
         let listNamaMaster = ["Player 1", "Player 2", "Player 3"];
+        let bulanDihapus = []; // Menyimpan log bulan yang dihapus agar terproteksi dari auto-generate
 
         document.getElementById('tanggal').valueAsDate = new Date();
         const dbStatusLabel = document.getElementById('cloudStatus');
@@ -275,15 +279,18 @@
         const filterTanggalMulai = document.getElementById('filterTanggalMulai');
         const filterTanggalSelesai = document.getElementById('filterTanggalSelesai');
 
+        // Mendengarkan data secara Realtime dari database Firebase
         const rootDbRef = ref(db, "farmhouse_cloud_data");
         onValue(rootDbRef, (snapshot) => {
             const serverValue = snapshot.val();
             if (serverValue) {
                 dataList = serverValue.riwayatPencatatan ? Object.values(serverValue.riwayatPencatatan) : [];
                 listNamaMaster = serverValue.listNamaMaster || ["Player 1", "Player 2", "Player 3"];
+                bulanDihapus = serverValue.bulanDihapus || [];
             } else {
                 dataList = [];
                 listNamaMaster = ["Player 1", "Player 2", "Player 3"];
+                bulanDihapus = [];
             }
 
             dbStatusLabel.textContent = `☁️ Connected (${dataList.length} Data)`;
@@ -296,6 +303,7 @@
             dbStatusLabel.textContent = "❌ Disconnected";
         });
 
+        // Format angka dengan titik ribuan (Masking Input)
         function formatMaskingInput(valueString) {
             const clean = valueString.replace(/\D/g, ""); 
             if(!clean) return "";
@@ -384,6 +392,7 @@
             set(ref(db, `farmhouse_cloud_data/listNamaMaster`), updatedList);
         });
 
+        // FUNGSI INTI: FILTER & LOGIKA AUTO-GENERATE BARIS DUMMY JIKA BELUM SETOR
         function JalankanFilterDanRender() {
             let semuaTanggalUnik = [...new Set(dataList.map(item => item.tanggal))];
             const hariIniStr = new Date().toISOString().slice(0, 10);
@@ -392,6 +401,11 @@
             let dataGabunganLengkap = [...dataList];
 
             semuaTanggalUnik.forEach(tgl => {
+                const bulanTgl = tgl.slice(0, 7); // Format: YYYY-MM
+                
+                // PROTEKSI: Jika bulan ini ditandai sebagai 'sudah dihapus', batalkan generate dummy Belum Bayar
+                if (bulanDihapus.includes(bulanTgl)) return;
+
                 listNamaMaster.forEach(nama => {
                     const sudahAda = dataList.some(item => item.tanggal === tgl && item.nama === nama);
                     if (!sudahAda) {
@@ -450,7 +464,6 @@
             return koleksiWarnaLengkap[indeksFinal];
         }
 
-        // PERBAIKAN STRUKTUR OVERFLOW: Menambahkan pembungkus khusus 'overflow-x-auto' agar tabel tidak memotong container luar jika melebar
         function renderVerticalGroupedList(arrayData = []) {
             const container = document.getElementById('verticalListContainer');
             container.innerHTML = '';
@@ -494,7 +507,6 @@
                     </div>
                 `;
 
-                // Div pembungkus tabel agar tabel yang berukuran besar dapat di-scroll horizontal tanpa merusak layout luar
                 const tableContainer = document.createElement('div');
                 tableContainer.className = "overflow-x-auto w-full block scrollbar-thin";
                 
@@ -566,7 +578,7 @@
                 container.appendChild(groupWrapper);
             });
 
-            // RE-BIND EVENT LISTENERS
+            // TOMBOL AKSICEPAT STATUS (LUNAS / BELUM)
             document.querySelectorAll('.btn-toggle-status').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const id = this.getAttribute('data-id');
@@ -592,6 +604,7 @@
                 });
             });
 
+            // TOMBOL EDIT DATA
             document.querySelectorAll('.btn-edit-data').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const id = this.getAttribute('data-id');
@@ -616,6 +629,7 @@
                 });
             });
 
+            // TOMBOL INPUT SETORAN SUSULAN
             document.querySelectorAll('.btn-input-susulan').forEach(btn => {
                 btn.addEventListener('click', function() {
                     resetFormState();
@@ -630,6 +644,7 @@
                 });
             });
 
+            // TOMBOL HAPUS SINGLE ROW DATA
             document.querySelectorAll('.btn-hapus-data').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const id = this.getAttribute('data-id');
@@ -651,6 +666,7 @@
             document.getElementById('totalGuardian').textContent = formatRupiahTabel(tg);
         }
 
+        // SUBMIT FORM KE FIREBASE
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             const editId = document.getElementById('editId').value;
@@ -658,10 +674,11 @@
 
             const isAuto = typeof editId === 'string' && editId.startsWith('AUTO-');
             const finalId = (editId && !isAuto) ? parseInt(editId) : Date.now();
+            const inputTanggal = document.getElementById('tanggal').value;
 
             const dataObj = {
                 id: finalId,
-                tanggal: document.getElementById('tanggal').value,
+                tanggal: inputTanggal,
                 nama: namaDropdown.value,
                 cegel: nilaiAsliCegel,
                 uangMakan: hitungUangMakan(nilaiAsliCegel),
@@ -670,9 +687,47 @@
                 keterangan: document.getElementById('keterangan').value || '-'
             };
 
+            // JIKA USER MEMASUKKAN DATA BARU DI BULAN YANG PERNAH DIHAPUS, BUKA KEMBALI KUNCIAN BULANNYA
+            const bBulan = inputTanggal.slice(0, 7);
+            if (bulanDihapus.includes(bBulan)) {
+                const updateBulan = bulanDihapus.filter(b => b !== bBulan);
+                set(ref(db, `farmhouse_cloud_data/bulanDihapus`), updateBulan);
+            }
+
             set(ref(db, `farmhouse_cloud_data/riwayatPencatatan/${finalId}`), dataObj)
                 .then(() => resetFormState())
                 .catch(err => alert(err.message));
+        });
+
+        // LOGIKA UTAMA: PROSES PEMBERSIHAN DATA PER BULAN & CEGAH DETEKSI DEFAULT OTOMATIS
+        document.getElementById('btnHapusPerBulan').addEventListener('click', function() {
+            const targetBulan = document.getElementById('hapusBulanInput').value; 
+            if(!targetBulan) return alert("Silakan pilih bulan terlebih dahulu!");
+
+            const namaBulanIndo = new Date(targetBulan + "-02").toLocaleDateString('id-ID', { month: 'long', year: 'numeric' });
+
+            if(confirm(`⚠️ PERINGATAN KELOLA DATA:\nApakah Anda yakin ingin menghapus SELURUH data pada bulan [ ${namaBulanIndo} ]?\n\nData yang dihapus tidak akan memicu default 'Belum Bayar' kembali.`)) {
+                
+                // 1. Kumpulkan semua data yang ada di bulan terpilih
+                const dataDiBulanIni = dataList.filter(item => item.tanggal && item.tanggal.startsWith(targetBulan));
+                
+                if(dataDiBulanIni.length === 0 && bulanDihapus.includes(targetBulan)) {
+                    return alert("Bulan tersebut memang sudah kosong bersih.");
+                }
+
+                // 2. Hapus seluruh baris data di Firebase riwayatPencatatan
+                dataDiBulanIni.forEach(item => {
+                    remove(ref(db, `farmhouse_cloud_data/riwayatPencatatan/${item.id}`));
+                });
+
+                // 3. Masukkan bulan ini ke daftar proteksi 'bulanDihapus' agar tidak ter-generate baris dummy default
+                if (!bulanDihapus.includes(targetBulan)) {
+                    const updateBulanList = [...bulanDihapus, targetBulan];
+                    set(ref(db, `farmhouse_cloud_data/bulanDihapus`), updateBulanList);
+                }
+
+                alert(`✅ Sukses menghapus seluruh data pada bulan ${namaBulanIndo} secara permanen.`);
+            }
         });
 
         function resetFormState() {
@@ -689,12 +744,14 @@
         }
         cancelEditBtn.addEventListener('click', resetFormState);
 
+        // FITUR BACKUP JSON
         document.getElementById('btnBackup').addEventListener('click', function() {
             if (dataList.length === 0) return alert("Tidak ada transaksi untuk dicadangkan.");
             const payload = {
                 info: "MSSTech Keuangan & Uang Makan Backup",
                 created_at: new Date().toISOString(),
                 listNamaMaster: listNamaMaster,
+                bulanDihapus: bulanDihapus,
                 riwayatPencatatan: dataList
             };
             const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(payload, null, 2));
@@ -704,6 +761,7 @@
             dl.click();
         });
 
+        // FITUR RESTORE JSON
         document.getElementById('restoreFile').addEventListener('change', function(event) {
             const file = event.target.files[0];
             if (!file) return;
@@ -719,6 +777,7 @@
                         info: parsed.info || "MSSTech Backup",
                         created_at: new Date().toISOString(),
                         listNamaMaster: parsed.listNamaMaster || ["Player 1", "Player 2", "Player 3"],
+                        bulanDihapus: parsed.bulanDihapus || [],
                         riwayatPencatatan: arr.reduce((acc, item) => { acc[item.id] = item; return acc; }, {})
                     }).then(() => alert("✅ Cloud server berhasil dipulihkan total!"));
                 } catch (err) { alert("Format file rusak atau salah."); }
@@ -728,7 +787,6 @@
         });
     </script>
 
-    <!-- THEME MANAGEMENT -->
     <script>
         function toggleDarkMode() {
             const html = document.documentElement;
