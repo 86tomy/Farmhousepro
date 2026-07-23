@@ -23,8 +23,10 @@
 </head>
 <body class="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-100 min-h-screen p-3 md:p-6 transition-colors duration-200">
 
+    <!-- KONTAINER DIUBAH MENJADI max-w-full AGAR MEMANFAATKAN SELURUH LEBAR LAYAR -->
     <div class="max-w-full mx-auto space-y-6">
         
+        <!-- HEADER UTAMA -->
         <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 transition-colors duration-200 print-card">
             <div>
                 <div class="flex items-center gap-3 flex-wrap">
@@ -46,6 +48,7 @@
             </div>
         </div>
 
+        <!-- BACKUP & RESTORE -->
         <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 transition-colors duration-200 no-print">
             <div class="flex items-center gap-4">
                 <span class="text-3xl">💾</span>
@@ -65,24 +68,10 @@
             </div>
         </div>
 
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 transition-colors duration-200 no-print">
-            <div class="flex items-center gap-4">
-                <span class="text-3xl">🗑️</span>
-                <div>
-                    <h2 class="text-base font-bold text-gray-800 dark:text-gray-200">Pembersihan Data Bulanan</h2>
-                    <p class="text-sm text-gray-500 dark:text-gray-400">Hapus seluruh riwayat pencatatan pada bulan tertentu secara permanen tanpa memicu default otomatis.</p>
-                </div>
-            </div>
-            <div class="flex items-center gap-3 flex-wrap">
-                <input type="month" id="hapusBulanInput" class="px-3 py-2 text-base border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 font-semibold">
-                <button id="btnHapusPerBulan" class="bg-red-600 hover:bg-red-700 text-white text-sm font-bold py-2.5 px-4 rounded-xl cursor-pointer transition shadow-sm">
-                    ⚠️ Hapus Data Bulan Ini
-                </button>
-            </div>
-        </div>
-
+        <!-- GRID LAYOUT UTAMA: Diubah rasionya agar Tabel mendapatkan porsi ruang jauh lebih luas -->
         <div class="grid grid-cols-1 xl:grid-cols-4 gap-6">
             
+            <!-- SIDEBAR FORM INPUT (1 KOLOM) -->
             <div class="space-y-6 no-print xl:col-span-1">
                 <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 h-fit transition-colors duration-200">
                     <div class="flex justify-between items-center mb-6 border-b dark:border-gray-700 pb-3">
@@ -144,8 +133,59 @@
                             <textarea id="keterangan" rows="2" placeholder="Catatan tambahan..." class="w-full px-4 py-2.5 text-base border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 font-medium"></textarea>
                         </div>
 
-                        <button type="submit" id="submitBtn" class="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-bold text-base py-3.5 px-4 rounded-xl transition duration-200 shadow-md cursor-pointer">
+                        <button type="submit" id="submitBtn" class="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-bold text-base py-3 px-4 rounded-xl transition duration-200 shadow-md cursor-pointer">
                             Tambahkan Data
+                        </button>
+                    </form>
+                </div>
+
+                <!-- MENU FITUR TAMBAHAN: INPUT UTANG DAN PIUTANG -->
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 h-fit transition-colors duration-200">
+                    <div class="flex justify-between items-center mb-4 border-b dark:border-gray-700 pb-3">
+                        <h2 class="text-xl font-bold text-gray-800 dark:text-gray-100">💸 Input Utang & Piutang</h2>
+                    </div>
+                    
+                    <form id="utangPiutangForm" class="space-y-4">
+                        <div>
+                            <label class="block text-base font-bold text-gray-700 dark:text-gray-300 mb-1">Pihak Terkait</label>
+                            <select id="upPihak" required class="w-full px-4 py-2.5 text-base border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 font-medium">
+                                <option value="User">User (Pemilik / Admin)</option>
+                                <option value="Pemain">Pemain</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-base font-bold text-gray-700 dark:text-gray-300 mb-1">Nama Pemain (Jika Pemain)</label>
+                            <select id="upNamaPemain" class="w-full px-4 py-2.5 text-base border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 font-medium">
+                                <option value="" selected>-- Pilih Pemain --</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-base font-bold text-gray-700 dark:text-gray-300 mb-1">Jenis Catatan</label>
+                            <select id="upJenis" class="w-full px-4 py-2.5 text-base border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 font-bold">
+                                <option value="Utang">🔴 Utang (Kita Meminjam/Harus Bayar)</option>
+                                <option value="Piutang">🟢 Piutang (Orang Lain Meminjam/Harus Tagih)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-base font-bold text-gray-700 dark:text-gray-300 mb-1">Nominal</label>
+                            <div class="relative rounded-xl shadow-sm">
+                                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                    <span class="text-gray-500 dark:text-gray-400 text-base font-bold">Rp</span>
+                                </div>
+                                <input type="text" id="upNominalMask" placeholder="0" required class="w-full pl-11 pr-4 py-2.5 text-base border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 font-mono font-bold">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-base font-bold text-gray-700 dark:text-gray-300 mb-1">Keterangan / Alasan</label>
+                            <textarea id="upKeterangan" rows="2" placeholder="Detail pinjaman/utang..." class="w-full px-4 py-2.5 text-base border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 font-medium"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white font-bold text-base py-3 px-4 rounded-xl transition duration-200 shadow-md cursor-pointer">
+                            Simpan Utang / Piutang
                         </button>
                     </form>
                 </div>
@@ -160,8 +200,10 @@
                 </div>
             </div>
 
+            <!-- AREA MONITORING & RIWAYAT LAPORAN (3 KOLOM - JAUH LEBIH LEBAR) -->
             <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 xl:col-span-3 flex flex-col space-y-6 transition-colors duration-200 print-card overflow-hidden">
                 
+                <!-- FILTER DATA TABEL -->
                 <div class="bg-gray-50 dark:bg-gray-900/50 p-4 rounded-xl border border-gray-200 dark:border-gray-700 no-print">
                     <h3 class="text-base font-bold text-gray-800 dark:text-gray-200 mb-3 flex items-center gap-2">
                         <span>🔍</span> Filter Data Pencatatan
@@ -195,9 +237,11 @@
                     </div>
                 </div>
 
+                <!-- CONTAINER LIST RIWAYAT TABEL -->
                 <div class="w-full">
                     <h2 class="text-xl font-bold text-gray-800 dark:text-gray-200 mb-4 border-b dark:border-gray-700 pb-3">Riwayat Pencatatan Laporan (Per Pemain)</h2>
                     
+                    <!-- Pembungkus Utama Blok Kelompok Riwayat -->
                     <div id="verticalListContainer" class="space-y-6 w-full">
                         <div id="emptyRow" class="text-center py-12 text-gray-400 text-base italic bg-gray-50 dark:bg-gray-900/40 rounded-xl border border-dashed border-gray-200 dark:border-gray-700">
                             Membuka sambungan ke cloud server...
@@ -205,9 +249,39 @@
                     </div>
                 </div>
 
+                <!-- CONTAINER RIWAYAT UTANG & PIUTANG -->
+                <div class="w-full pt-4 border-t border-gray-200 dark:border-gray-700">
+                    <h2 class="text-xl font-bold text-gray-800 dark:text-gray-200 mb-4 border-b dark:border-gray-700 pb-3 flex items-center justify-between">
+                        <span>💳 Daftar Rekap Utang & Piutang</span>
+                    </h2>
+                    
+                    <div class="overflow-x-auto w-full block scrollbar-thin bg-white dark:bg-gray-800 rounded-xl border border-gray-300 dark:border-gray-700 shadow-md">
+                        <table class="w-full text-left border-collapse min-w-[700px]">
+                            <thead>
+                                <tr class="bg-gray-50 dark:bg-gray-900/60 text-xs font-black uppercase tracking-wider text-gray-500 dark:text-gray-400 border-b border-gray-300 dark:border-gray-700">
+                                    <th class="p-3.5">Tanggal</th>
+                                    <th class="p-3.5">Pihak</th>
+                                    <th class="p-3.5">Nama Pemain</th>
+                                    <th class="p-3.5">Jenis</th>
+                                    <th class="p-3.5">Nominal</th>
+                                    <th class="p-3.5">Keterangan</th>
+                                    <th class="p-3.5 text-right no-print">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabelUtangPiutangBody" class="divide-y divide-gray-200 dark:divide-gray-700/80">
+                                <tr>
+                                    <td colspan="7" class="text-center py-6 text-gray-400 italic">Belum ada data utang / piutang.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- GRAND TOTAL CARDS -->
                 <div class="pt-6 border-t border-gray-200 dark:border-gray-700">
                     <h3 class="text-xs font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-3">💰 Grand Total Berdasarkan Filter</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-5 gap-4">
+                        <!-- Card Cegel -->
                         <div class="bg-gradient-to-br from-blue-50 to-blue-100/60 dark:from-blue-950/20 dark:to-blue-900/10 p-4 rounded-xl border border-blue-200/60 dark:border-blue-900/30 flex items-center justify-between shadow-sm">
                             <div>
                                 <p class="text-xs font-bold text-blue-600 dark:text-blue-400">Total Setoran Cegel</p>
@@ -215,19 +289,37 @@
                             </div>
                             <span class="text-2xl bg-blue-500/10 p-2 rounded-xl text-blue-600 no-print">🔷</span>
                         </div>
+                        <!-- Card Uang Makan -->
                         <div class="bg-gradient-to-br from-emerald-50 to-emerald-100/60 dark:from-emerald-950/20 dark:to-emerald-900/10 p-4 rounded-xl border border-emerald-200/60 dark:border-emerald-900/30 flex items-center justify-between shadow-sm">
                             <div>
                                 <p class="text-xs font-bold text-emerald-600 dark:text-emerald-400">Total Uang Makan</p>
-                                <p id="totalUangMakan" class="text-xl font-extrabold font-mono text-emerald-900 dark:text-blue-100 mt-1">Rp 0</p>
+                                <p id="totalUangMakan" class="text-xl font-extrabold font-mono text-emerald-900 dark:text-emerald-100 mt-1">Rp 0</p>
                             </div>
                             <span class="text-2xl bg-emerald-500/10 p-2 rounded-xl text-emerald-600 no-print">🍖</span>
                         </div>
+                        <!-- Card Guardian -->
                         <div class="bg-gradient-to-br from-purple-50 to-purple-100/60 dark:from-purple-950/20 dark:to-purple-900/10 p-4 rounded-xl border border-purple-200/60 dark:border-purple-900/30 flex items-center justify-between shadow-sm">
                             <div>
                                 <p class="text-xs font-bold text-purple-600 dark:text-purple-400">Total Guardian</p>
                                 <p id="totalGuardian" class="text-xl font-extrabold font-mono text-purple-900 dark:text-purple-100 mt-1">Rp 0</p>
                             </div>
                             <span class="text-2xl bg-purple-500/10 p-2 rounded-xl text-purple-600 no-print">🛡️</span>
+                        </div>
+                        <!-- Card Total Utang -->
+                        <div class="bg-gradient-to-br from-red-50 to-red-100/60 dark:from-red-950/20 dark:to-red-900/10 p-4 rounded-xl border border-red-200/60 dark:border-red-900/30 flex items-center justify-between shadow-sm">
+                            <div>
+                                <p class="text-xs font-bold text-red-600 dark:text-red-400">Total Utang</p>
+                                <p id="totalUtangCard" class="text-xl font-extrabold font-mono text-red-900 dark:text-red-100 mt-1">Rp 0</p>
+                            </div>
+                            <span class="text-2xl bg-red-500/10 p-2 rounded-xl text-red-600 no-print">🔴</span>
+                        </div>
+                        <!-- Card Total Piutang -->
+                        <div class="bg-gradient-to-br from-amber-50 to-amber-100/60 dark:from-amber-950/20 dark:to-amber-900/10 p-4 rounded-xl border border-amber-200/60 dark:border-amber-900/30 flex items-center justify-between shadow-sm">
+                            <div>
+                                <p class="text-xs font-bold text-amber-600 dark:text-amber-400">Total Piutang</p>
+                                <p id="totalPiutangCard" class="text-xl font-extrabold font-mono text-amber-900 dark:text-amber-100 mt-1">Rp 0</p>
+                            </div>
+                            <span class="text-2xl bg-amber-500/10 p-2 rounded-xl text-amber-600 no-print">🟢</span>
                         </div>
                     </div>
                 </div>
@@ -237,11 +329,11 @@
 
     </div>
 
+    <!-- CODE SYSTEM & FIREBASE INTEGRASI -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getDatabase, ref, set, onValue, remove, update } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-        // Konfigurasi Aplikasi Firebase Anda
         const firebaseConfig = {
             apiKey: "AIzaSyAaYTmVx6phzoK8HNOSw9y3MAtkGe_pS5Y",
             authDomain: "perhitungan-basic-farmhouse.firebaseapp.com",
@@ -257,13 +349,14 @@
         const db = getDatabase(app);
 
         let dataList = [];
+        let utangPiutangList = [];
         let listNamaMaster = ["Player 1", "Player 2", "Player 3"];
-        let bulanDihapus = []; // Menyimpan log bulan yang dihapus agar terproteksi dari auto-generate
 
         document.getElementById('tanggal').valueAsDate = new Date();
         const dbStatusLabel = document.getElementById('cloudStatus');
         const form = document.getElementById('cegelForm');
         const namaDropdown = document.getElementById('namaDropdown');
+        const upNamaPemain = document.getElementById('upNamaPemain');
         const filterNamaDropdown = document.getElementById('filterNamaDropdown');
         const filterStatusDropdown = document.getElementById('filterStatusDropdown');
         const cegelMask = document.getElementById('cegelMask');
@@ -279,18 +372,20 @@
         const filterTanggalMulai = document.getElementById('filterTanggalMulai');
         const filterTanggalSelesai = document.getElementById('filterTanggalSelesai');
 
-        // Mendengarkan data secara Realtime dari database Firebase
+        const utangPiutangForm = document.getElementById('utangPiutangForm');
+        const upNominalMask = document.getElementById('upNominalMask');
+
         const rootDbRef = ref(db, "farmhouse_cloud_data");
         onValue(rootDbRef, (snapshot) => {
             const serverValue = snapshot.val();
             if (serverValue) {
                 dataList = serverValue.riwayatPencatatan ? Object.values(serverValue.riwayatPencatatan) : [];
+                utangPiutangList = serverValue.riwayatUtangPiutang ? Object.values(serverValue.riwayatUtangPiutang) : [];
                 listNamaMaster = serverValue.listNamaMaster || ["Player 1", "Player 2", "Player 3"];
-                bulanDihapus = serverValue.bulanDihapus || [];
             } else {
                 dataList = [];
+                utangPiutangList = [];
                 listNamaMaster = ["Player 1", "Player 2", "Player 3"];
-                bulanDihapus = [];
             }
 
             dbStatusLabel.textContent = `☁️ Connected (${dataList.length} Data)`;
@@ -298,12 +393,12 @@
             
             renderDropdownNama();
             JalankanFilterDanRender();
+            renderTabelUtangPiutang();
         }, (error) => {
             console.error(error);
             dbStatusLabel.textContent = "❌ Disconnected";
         });
 
-        // Format angka dengan titik ribuan (Masking Input)
         function formatMaskingInput(valueString) {
             const clean = valueString.replace(/\D/g, ""); 
             if(!clean) return "";
@@ -335,6 +430,9 @@
         guardianMask.addEventListener('input', function() {
             this.value = formatMaskingInput(this.value);
         });
+        upNominalMask.addEventListener('input', function() {
+            this.value = formatMaskingInput(this.value);
+        });
 
         function hitungUangMakan(nilaiCegel) {
             if (nilaiCegel >= 10000000) return 10000; 
@@ -345,8 +443,10 @@
         function renderDropdownNama() {
             const selectedValForm = namaDropdown.value;
             const selectedValFilter = filterNamaDropdown.value;
+            const selectedValUP = upNamaPemain.value;
 
             namaDropdown.innerHTML = '<option value="" disabled selected>-- Pilih Nama --</option>';
+            upNamaPemain.innerHTML = '<option value="" selected>-- Pilih Pemain --</option>';
             filterNamaDropdown.innerHTML = '<option value="">-- Semua Nama --</option>';
             daftarNamaList.innerHTML = '';
 
@@ -354,6 +454,10 @@
                 const optionForm = document.createElement('option');
                 optionForm.value = nama; optionForm.textContent = nama;
                 namaDropdown.appendChild(optionForm);
+
+                const optionUP = document.createElement('option');
+                optionUP.value = nama; optionUP.textContent = nama;
+                upNamaPemain.appendChild(optionUP);
 
                 const optionFilter = document.createElement('option');
                 optionFilter.value = nama; optionFilter.textContent = nama;
@@ -370,6 +474,7 @@
 
             if(listNamaMaster.includes(selectedValForm)) namaDropdown.value = selectedValForm;
             if(listNamaMaster.includes(selectedValFilter)) filterNamaDropdown.value = selectedValFilter;
+            if(listNamaMaster.includes(selectedValUP)) upNamaPemain.value = selectedValUP;
 
             document.querySelectorAll('.btn-del-nama').forEach(btn => {
                 btn.addEventListener('click', function() {
@@ -392,7 +497,6 @@
             set(ref(db, `farmhouse_cloud_data/listNamaMaster`), updatedList);
         });
 
-        // FUNGSI INTI: FILTER & LOGIKA AUTO-GENERATE BARIS DUMMY JIKA BELUM SETOR
         function JalankanFilterDanRender() {
             let semuaTanggalUnik = [...new Set(dataList.map(item => item.tanggal))];
             const hariIniStr = new Date().toISOString().slice(0, 10);
@@ -401,11 +505,6 @@
             let dataGabunganLengkap = [...dataList];
 
             semuaTanggalUnik.forEach(tgl => {
-                const bulanTgl = tgl.slice(0, 7); // Format: YYYY-MM
-                
-                // PROTEKSI: Jika bulan ini ditandai sebagai 'sudah dihapus', batalkan generate dummy Belum Bayar
-                if (bulanDihapus.includes(bulanTgl)) return;
-
                 listNamaMaster.forEach(nama => {
                     const sudahAda = dataList.some(item => item.tanggal === tgl && item.nama === nama);
                     if (!sudahAda) {
@@ -578,7 +677,7 @@
                 container.appendChild(groupWrapper);
             });
 
-            // TOMBOL AKSICEPAT STATUS (LUNAS / BELUM)
+            // RE-BIND EVENT LISTENERS
             document.querySelectorAll('.btn-toggle-status').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const id = this.getAttribute('data-id');
@@ -604,7 +703,6 @@
                 });
             });
 
-            // TOMBOL EDIT DATA
             document.querySelectorAll('.btn-edit-data').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const id = this.getAttribute('data-id');
@@ -629,7 +727,6 @@
                 });
             });
 
-            // TOMBOL INPUT SETORAN SUSULAN
             document.querySelectorAll('.btn-input-susulan').forEach(btn => {
                 btn.addEventListener('click', function() {
                     resetFormState();
@@ -644,7 +741,6 @@
                 });
             });
 
-            // TOMBOL HAPUS SINGLE ROW DATA
             document.querySelectorAll('.btn-hapus-data').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const id = this.getAttribute('data-id');
@@ -656,6 +752,95 @@
             });
         }
 
+        // RENDER & AKSI TABEL UTANG PIUTANG
+        function renderTabelUtangPiutang() {
+            const tbody = document.getElementById('tabelUtangPiutangBody');
+            tbody.innerHTML = '';
+
+            let totalUtang = 0;
+            let totalPiutang = 0;
+
+            if (utangPiutangList.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="text-center py-6 text-gray-400 italic">Belum ada data utang / piutang.</td></tr>`;
+                document.getElementById('totalUtangCard').textContent = formatRupiahTabel(0);
+                document.getElementById('totalPiutangCard').textContent = formatRupiahTabel(0);
+                return;
+            }
+
+            utangPiutangList.sort((a, b) => new Date(b.tanggal) - new Date(a.tanggal)).forEach(item => {
+                if (item.jenis === 'Utang') totalUtang += item.nominal;
+                if (item.jenis === 'Piutang') totalPiutang += item.nominal;
+
+                const tr = document.createElement('tr');
+                tr.className = "border-b border-gray-200 dark:border-gray-700/80 hover:bg-slate-50 dark:hover:bg-gray-900/40 transition text-sm font-medium";
+                
+                const isUtang = item.jenis === 'Utang';
+                const badgeJenis = isUtang 
+                    ? '<span class="px-2 py-0.5 rounded-full text-xs font-black bg-red-100 text-red-800 dark:bg-red-950 dark:text-red-300">🔴 UTANG</span>'
+                    : '<span class="px-2 py-0.5 rounded-full text-xs font-black bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">🟢 PIUTANG</span>';
+
+                tr.innerHTML = `
+                    <td class="p-3.5 font-bold text-gray-800 dark:text-gray-200 whitespace-nowrap">${formatTanggalId(item.tanggal)}</td>
+                    <td class="p-3.5 font-bold text-gray-700 dark:text-gray-300">${item.pihak}</td>
+                    <td class="p-3.5 font-bold text-gray-800 dark:text-gray-200">${item.namaPemain || '-'}</td>
+                    <td class="p-3.5 whitespace-nowrap">${badgeJenis}</td>
+                    <td class="p-3.5 font-mono font-bold ${isUtang ? 'text-red-600 dark:text-red-400' : 'text-emerald-600 dark:text-emerald-400'} text-base whitespace-nowrap">${formatRupiahTabel(item.nominal)}</td>
+                    <td class="p-3.5 text-gray-600 dark:text-gray-300 text-sm break-word-custom">${item.keterangan || '-'}</td>
+                    <td class="p-3.5 text-right no-print whitespace-nowrap">
+                        <button type="button" data-id="${item.id}" class="btn-hapus-up text-red-500 hover:underline font-bold">Hapus</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            document.getElementById('totalUtangCard').textContent = formatRupiahTabel(totalUtang);
+            document.getElementById('totalPiutangCard').textContent = formatRupiahTabel(totalPiutang);
+
+            document.querySelectorAll('.btn-hapus-up').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    if (confirm("Yakin ingin menghapus rincian utang/piutang ini?")) {
+                        remove(ref(db, `farmhouse_cloud_data/riwayatUtangPiutang/${id}`));
+                    }
+                });
+            });
+        }
+
+        utangPiutangForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const pihak = document.getElementById('upPihak').value;
+            const namaPemain = pihak === 'Pemain' ? upNamaPemain.value : 'User';
+            const jenis = document.getElementById('upJenis').value;
+            const nominal = unmaskNilai(upNominalMask.value);
+            const keterangan = document.getElementById('upKeterangan').value || '-';
+
+            if (pihak === 'Pemain' && !upNamaPemain.value) {
+                return alert("Silakan pilih Nama Pemain!");
+            }
+
+            if (!nominal || nominal <= 0) {
+                return alert("Masukkan nominal yang valid!");
+            }
+
+            const id = Date.now();
+            const dataUP = {
+                id: id,
+                tanggal: new Date().toISOString().slice(0, 10),
+                pihak: pihak,
+                namaPemain: namaPemain,
+                jenis: jenis,
+                nominal: nominal,
+                keterangan: keterangan
+            };
+
+            set(ref(db, `farmhouse_cloud_data/riwayatUtangPiutang/${id}`), dataUP)
+                .then(() => {
+                    utangPiutangForm.reset();
+                    upNominalMask.value = "";
+                })
+                .catch(err => alert(err.message));
+        });
+
         function calculateTotal(arrayData = []) {
             let tc = 0, tum = 0, tg = 0;
             arrayData.forEach(item => {
@@ -666,7 +851,6 @@
             document.getElementById('totalGuardian').textContent = formatRupiahTabel(tg);
         }
 
-        // SUBMIT FORM KE FIREBASE
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             const editId = document.getElementById('editId').value;
@@ -674,11 +858,10 @@
 
             const isAuto = typeof editId === 'string' && editId.startsWith('AUTO-');
             const finalId = (editId && !isAuto) ? parseInt(editId) : Date.now();
-            const inputTanggal = document.getElementById('tanggal').value;
 
             const dataObj = {
                 id: finalId,
-                tanggal: inputTanggal,
+                tanggal: document.getElementById('tanggal').value,
                 nama: namaDropdown.value,
                 cegel: nilaiAsliCegel,
                 uangMakan: hitungUangMakan(nilaiAsliCegel),
@@ -687,47 +870,9 @@
                 keterangan: document.getElementById('keterangan').value || '-'
             };
 
-            // JIKA USER MEMASUKKAN DATA BARU DI BULAN YANG PERNAH DIHAPUS, BUKA KEMBALI KUNCIAN BULANNYA
-            const bBulan = inputTanggal.slice(0, 7);
-            if (bulanDihapus.includes(bBulan)) {
-                const updateBulan = bulanDihapus.filter(b => b !== bBulan);
-                set(ref(db, `farmhouse_cloud_data/bulanDihapus`), updateBulan);
-            }
-
             set(ref(db, `farmhouse_cloud_data/riwayatPencatatan/${finalId}`), dataObj)
                 .then(() => resetFormState())
                 .catch(err => alert(err.message));
-        });
-
-        // LOGIKA UTAMA: PROSES PEMBERSIHAN DATA PER BULAN & CEGAH DETEKSI DEFAULT OTOMATIS
-        document.getElementById('btnHapusPerBulan').addEventListener('click', function() {
-            const targetBulan = document.getElementById('hapusBulanInput').value; 
-            if(!targetBulan) return alert("Silakan pilih bulan terlebih dahulu!");
-
-            const namaBulanIndo = new Date(targetBulan + "-02").toLocaleDateString('id-ID', { month: 'long', year: 'numeric' });
-
-            if(confirm(`⚠️ PERINGATAN KELOLA DATA:\nApakah Anda yakin ingin menghapus SELURUH data pada bulan [ ${namaBulanIndo} ]?\n\nData yang dihapus tidak akan memicu default 'Belum Bayar' kembali.`)) {
-                
-                // 1. Kumpulkan semua data yang ada di bulan terpilih
-                const dataDiBulanIni = dataList.filter(item => item.tanggal && item.tanggal.startsWith(targetBulan));
-                
-                if(dataDiBulanIni.length === 0 && bulanDihapus.includes(targetBulan)) {
-                    return alert("Bulan tersebut memang sudah kosong bersih.");
-                }
-
-                // 2. Hapus seluruh baris data di Firebase riwayatPencatatan
-                dataDiBulanIni.forEach(item => {
-                    remove(ref(db, `farmhouse_cloud_data/riwayatPencatatan/${item.id}`));
-                });
-
-                // 3. Masukkan bulan ini ke daftar proteksi 'bulanDihapus' agar tidak ter-generate baris dummy default
-                if (!bulanDihapus.includes(targetBulan)) {
-                    const updateBulanList = [...bulanDihapus, targetBulan];
-                    set(ref(db, `farmhouse_cloud_data/bulanDihapus`), updateBulanList);
-                }
-
-                alert(`✅ Sukses menghapus seluruh data pada bulan ${namaBulanIndo} secara permanen.`);
-            }
         });
 
         function resetFormState() {
@@ -744,15 +889,14 @@
         }
         cancelEditBtn.addEventListener('click', resetFormState);
 
-        // FITUR BACKUP JSON
         document.getElementById('btnBackup').addEventListener('click', function() {
-            if (dataList.length === 0) return alert("Tidak ada transaksi untuk dicadangkan.");
+            if (dataList.length === 0 && utangPiutangList.length === 0) return alert("Tidak ada transaksi untuk dicadangkan.");
             const payload = {
                 info: "MSSTech Keuangan & Uang Makan Backup",
                 created_at: new Date().toISOString(),
                 listNamaMaster: listNamaMaster,
-                bulanDihapus: bulanDihapus,
-                riwayatPencatatan: dataList
+                riwayatPencatatan: dataList,
+                riwayatUtangPiutang: utangPiutangList
             };
             const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(payload, null, 2));
             const dl = document.createElement('a');
@@ -761,7 +905,6 @@
             dl.click();
         });
 
-        // FITUR RESTORE JSON
         document.getElementById('restoreFile').addEventListener('change', function(event) {
             const file = event.target.files[0];
             if (!file) return;
@@ -773,12 +916,14 @@
                 try {
                     const parsed = JSON.parse(e.target.result);
                     let arr = Array.isArray(parsed.riwayatPencatatan) ? parsed.riwayatPencatatan : Object.values(parsed.riwayatPencatatan || {});
+                    let arrUP = Array.isArray(parsed.riwayatUtangPiutang) ? parsed.riwayatUtangPiutang : Object.values(parsed.riwayatUtangPiutang || {});
+                    
                     set(ref(db, `farmhouse_cloud_data`), {
                         info: parsed.info || "MSSTech Backup",
                         created_at: new Date().toISOString(),
                         listNamaMaster: parsed.listNamaMaster || ["Player 1", "Player 2", "Player 3"],
-                        bulanDihapus: parsed.bulanDihapus || [],
-                        riwayatPencatatan: arr.reduce((acc, item) => { acc[item.id] = item; return acc; }, {})
+                        riwayatPencatatan: arr.reduce((acc, item) => { acc[item.id] = item; return acc; }, {}),
+                        riwayatUtangPiutang: arrUP.reduce((acc, item) => { acc[item.id] = item; return acc; }, {})
                     }).then(() => alert("✅ Cloud server berhasil dipulihkan total!"));
                 } catch (err) { alert("Format file rusak atau salah."); }
                 finally { event.target.value = ''; }
@@ -787,6 +932,7 @@
         });
     </script>
 
+    <!-- THEME MANAGEMENT -->
     <script>
         function toggleDarkMode() {
             const html = document.documentElement;
